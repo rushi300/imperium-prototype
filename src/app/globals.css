@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+html, body { background:#0A0A0F; color:#fff; }
+body { font-family: Inter, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+
+.font-display { font-stretch: 112%; letter-spacing:-0.02em; }
+
+*:focus-visible { outline:2px solid #FF2D77; outline-offset:2px; border-radius:2px; }
+
+.no-scrollbar::-webkit-scrollbar { display:none; }
+.no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+
+.skeleton { background:linear-gradient(90deg,#14141C 0%,#1E1E28 50%,#14141C 100%); background-size:200% 100%; animation:sk 1.5s infinite; }
+@keyframes sk { from{background-position:200% 0} to{background-position:-200% 0} }
+
+input[type="range"]{ accent-color:#FF2D77; }
+
+/* -------------------------- Signature motion -------------------------- */
+@keyframes kenburns {
+  from { transform: scale(1.1) translate3d(0,0,0); }
+  to   { transform: scale(1) translate3d(0,0,0); }
+}
+.hero-photo { animation: kenburns 26s cubic-bezier(0.16,1,0.3,1) forwards; }
+
+@keyframes synapsePulse {
+  0%, 100% { opacity: var(--syn-min, 0.25); }
+  50% { opacity: var(--syn-max, 0.85); }
+}
+.synapse-node { animation: synapsePulse 4.5s ease-in-out infinite; transform-origin: center; }
+
+@keyframes synapseDrift {
+  0% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(-6px,8px,0); }
+  100% { transform: translate3d(0,0,0); }
+}
+.synapse-field { animation: synapseDrift 18s ease-in-out infinite; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 32s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  .hero-photo { animation: none !important; transform: none !important; }
+}
